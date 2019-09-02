@@ -1,0 +1,27 @@
+{
+  "name": "generate-npm-package",
+  "version": "1.0.0",
+  "description": "generate npm package cli",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "tako": "bin/index.js",
+    "create-npm-package": "bin/index.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "esm": "^3.2.25",
+    "inquirer": "^7.0.0",
+    "listr": "^0.14.3",
+    "meow": "^5.0.0",
+    "shelljs": "^0.8.3"
+  },
+  "files": [
+    "bin/",
+    "src/"
+  ]
+}
