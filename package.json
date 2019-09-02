@@ -1,6 +1,6 @@
 {
   "name": "generate-npm-package",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "generate npm package cli",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "license": "ISC",
   "bin": {
     "tako": "bin/index.js",
-    "create-npm-package": "bin/index.js"
+    "generate-npm-package": "bin/index.js"
   },
   "dependencies": {
     "chalk": "^2.4.2",
@@ -23,5 +23,28 @@
   "files": [
     "bin/",
     "src/"
+  ],
+  "keywords": [
+    "cli",
+    "npm",
+    "package",
+    "generate",
+    "create",
+    "chalk",
+    "esm",
+    "inquirer",
+    "listr",
+    "meow",
+    "shelljs",
+    "js",
+    "npm",
+    "create",
+    "reactjs",
+    "cli",
+    "package",
+    "webpack",
+    "webpack",
+    "babel",
+    "react-component"
   ]
 }
