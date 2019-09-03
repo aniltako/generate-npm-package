@@ -8,12 +8,14 @@
     "url": "https://github.com/aniltako/generate-npm-package.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "git-cz",
+    "semantic-release": "semantic-release"
   },
   "author": "",
   "license": "ISC",
   "bin": {
-    "generate-npm-package": "bin/index.js"  
+    "generate-npm-package": "bin/index.js"
   },
   "dependencies": {
     "chalk": "^2.4.2",
@@ -28,6 +30,21 @@
     "bin/",
     "src/"
   ],
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.0.2",
+    "semantic-release": "^15.13.24"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "release": {
+    "branches": [
+      "master",
+      "next"
+    ]
+  },
   "keywords": [
     "cli",
     "npm",
