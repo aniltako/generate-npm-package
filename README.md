@@ -1,8 +1,14 @@
 # generate npm package
 This is cli to create boiler plate for npm package project.
 
+# Getting Started
+
+## Installation
+
+`npm install -g generate-npm-package`
+
 ## Usage
-### create npm package project
+
 `$ generate-npm-package`
 
 ![create](https://user-images.githubusercontent.com/18716334/64155422-78c00100-ce52-11e9-94b5-273ecbca0366.png)
