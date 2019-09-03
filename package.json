@@ -1,6 +1,6 @@
 {
   "name": "generate-npm-package",
-  "version": "1.0.4",
+  "version": "0.0.0-development",
   "description": "generate npm package cli",
   "main": "index.js",
   "repository": {
