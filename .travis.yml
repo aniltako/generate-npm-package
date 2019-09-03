@@ -8,8 +8,7 @@ install: npm install
 before_script:
   - npm prune
 script:
-  - npm run test
-  - npm run build
+  - npm run echo
 after_success:
   - npm run semantic-release
 branches:

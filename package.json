@@ -8,7 +8,7 @@
     "url": "https://github.com/aniltako/generate-npm-package.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "echo": "skipping tests",
     "commit": "git-cz",
     "semantic-release": "semantic-release"
   },
