@@ -55,6 +55,9 @@ const cloneProject = (options) => {
     }
 
     initGit(options);
+    initPackageJson(options);
+    initSemanticRelease(options);
+    initTravis(options);
 
 }
 
@@ -62,19 +65,121 @@ const initGit = (options) => {
 
     if ( options.projectName !== 'create-npm-package-js') {
         if ( shell.exec(`mv create-npm-package-js ${options.projectName}`).code !== 0 ) {
-            shell.echo(chalk.red('Error: Initializing Git'));
+            shell.echo(chalk.red('Error: Create project fail'));
             shell.exit(1);
         } 
     }
 
-
     if ( shell.cd(`${options.projectName}`).code !== 0 ) {
-        shell.echo(chalk.red('Error: Initializing Git'));
+        shell.echo(chalk.red('Error: Create project fail'));
         shell.exit(1);
     }
 
     if ( shell.exec('rm -rf .git/').code !== 0 ) {
-        shell.echo(chalk.red('Error: Initializing Git'));
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    }
+
+}
+
+const initSemanticRelease = (options) => {
+    if ( options.isSemanticRelease ) {
+        setupSemanticRelease(options);
+    } else {
+        setupDefaultConfig(options);
+    }
+}
+
+const initPackageJson = () => {
+    if ( shell.exec('rm package.json').code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    }
+
+    if ( shell.exec('rm package-lock.json').code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    }
+}
+
+const setupSemanticRelease = (options) => {
+    if ( shell.exec('rm package.template.json').code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    }
+
+    if ( shell.sed('-i', 'create-npm-package-js', options.projectName, 'package.semantic.json').code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    } 
+
+    if ( shell.exec(`mv package.semantic.json package.json`).code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    } 
+}
+
+const setupDefaultConfig = (options) => {
+    if ( shell.exec('rm package.semantic.json').code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    }
+
+    if ( shell.sed('-i', 'create-npm-package-js', options.projectName, 'package.template.json').code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    } 
+
+    if ( shell.exec(`mv package.template.json package.json`).code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    } 
+}
+
+const initTravis = (options) => {
+    if ( shell.exec('rm .travis.yml').code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    }
+
+    if ( options.isTravis && options.isSemanticRelease ) {
+        setupSemanticReleaseTravis();
+    } else if ( options.isTravis && !options.isSemanticRelease ) {
+        setupTravis();
+    } else {
+        if ( shell.exec('rm .travis.template.yml').code !== 0 ) {
+            shell.echo(chalk.red('Error: Create project fail'));
+            shell.exit(1);
+        }
+        if ( shell.exec('rm .travis.semantic.yml').code !== 0 ) {
+            shell.echo(chalk.red('Error: Create project fail'));
+            shell.exit(1);
+        }
+    }
+}
+
+const setupSemanticReleaseTravis = () => {
+
+    if ( shell.exec('rm .travis.template.yml').code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    }
+
+    if ( shell.exec(`mv .travis.semantic.yml .travis.yml`).code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    } 
+}
+
+
+const setupTravis = () => {
+    if ( shell.exec('rm .travis.semantic.yml').code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
+        shell.exit(1);
+    }
+
+    if ( shell.exec(`mv .travis.template.yml .travis.yml`).code !== 0 ) {
+        shell.echo(chalk.red('Error: Create project fail'));
         shell.exit(1);
     } 
 }
@@ -105,12 +210,23 @@ const askQuestions = () => {
             message: 'project name?',
             default: 'create-npm-package-js',
             validate: function (input) {
-                console.log("INPUT", input)            
                   if (!input) {
                     return 'You need to provide a project name';
                   }
                   return true;
               }
+        },
+        {
+            type: 'confirm',
+            name: 'isSemanticRelease',
+            message: 'Use Semantic Release ?',
+            default: false,
+        },
+        {
+            type: 'confirm',
+            name: 'isTravis',
+            message: 'Travis setup ?',
+            default: false,
         },
         {
             type: 'confirm',
