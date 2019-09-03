@@ -2,7 +2,7 @@
   "name": "generate-npm-package",
   "version": "0.0.0-development",
   "description": "generate npm package cli",
-  "main": "index.js",
+  "main": "bin/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/aniltako/generate-npm-package.git"
