@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/aniltako/generate-npm-package.svg?branch=master)](https://travis-ci.org/aniltako/generate-npm-package)
+
 # generate npm package
 This is cli to create boiler plate for npm package project.
 
