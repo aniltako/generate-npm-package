@@ -3,6 +3,10 @@
   "version": "1.0.3",
   "description": "generate npm package cli",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aniltako/generate-npm-package.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
