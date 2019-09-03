@@ -244,7 +244,6 @@ const run = async (argv, cli) => {
     if ( cli.flags.v ) {
         cli.showVersion();
     }
-
     init();
     const answers = await askQuestions();
     const options = {
